@@ -4,7 +4,9 @@
   "main": "oc-form-container.html",
   "dependencies": {
     "polymer": "Polymer/polymer#2.x",
-    "polymer-decorators": "Polymer/polymer-decorators#^1.0.2"
+    "polymer-decorators": "Polymer/polymer-decorators#^1.0.2",
+    "iron-collapse": "PolymerElements/iron-collapse#gen-typescript-declarations",
+    "iron-resizable-behavior": "PolymerElements/iron-resizable-behavior#master"
   },
   "devDependencies": {
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
