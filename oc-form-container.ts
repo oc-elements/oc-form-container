@@ -1,6 +1,7 @@
 /// <reference path="../polymer/types/polymer-element.d.ts" />
 /// <reference path="../polymer-decorators/polymer-decorators.d.ts" />
-const {customElement, property} = Polymer.decorators;
+import customElement = Polymer.decorators.customElement;
+import property = Polymer.decorators.property;
 @customElement('oc-form-container')
 class OcFormContainer extends Polymer.Element {
 
