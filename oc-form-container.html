@@ -1,0 +1,37 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer-decorators/polymer-decorators.html">
+
+<dom-module id="oc-form-container">
+    <template>
+        <!-- BOOTSTRAP 4 CSS-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <style>
+            :host {
+                display: block;
+            }
+
+            .category-heading {
+                border-top: 1px #cecece solid;
+                border-bottom: 1px #cecece solid;
+                background: #f8f8f8;
+                color: #000;
+            }
+
+            h3 {
+                font-size: 1.13em !important;
+                margin: 10px 0 !important;
+            }
+        </style>
+
+        <div class="container-fluid">
+            <div class="row category-heading">
+                <div class="col-sm-12">
+                    <h3>[[header]]</h3>
+                </div>
+            </div>
+            <slot name="content"></slot>
+        </div>
+    </template>
+
+    <script src="oc-form-container.js"></script>
+</dom-module>
