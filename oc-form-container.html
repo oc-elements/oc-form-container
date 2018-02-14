@@ -36,8 +36,14 @@
                 </div>
             </div>
             <iron-collapse id="ironCollapse" opened>
+                <!-- Main content -->
                 <slot name="content"></slot>
-                <!-- TODO: Add Slot for button container -->
+                <!-- Button Container -->
+                <div class="row category-heading">
+                    <div class="col-sm-12 text-center">
+                        <slot name="button-container"></slot>
+                    </div>
+                </div>
             </iron-collapse>
         </div>
     </template>
