@@ -36,12 +36,13 @@
                 </div>
             </div>
             <iron-collapse id="ironCollapse" opened>
-                <!-- Main content -->
+                <!-- Either/Or -->
+                <slot></slot>
                 <slot name="content"></slot>
-                <!-- Button Container -->
+                <!-- TODO: This slot is for the button container -->
                 <div class="row category-heading">
                     <div class="col-sm-12 text-center">
-                        <slot name="button-container"></slot>
+                        <slot name="button"></slot>
                     </div>
                 </div>
             </iron-collapse>
