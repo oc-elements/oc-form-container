@@ -1,0 +1,24 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer-decorators/polymer-decorators.html">
+
+<dom-module id="oc-form-creator">
+    <template>
+        <!-- BOOTSTRAP 4 CSS-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <style>
+
+        </style>
+        <template is="dom-repeat" items="[[records]]">
+            <div class="row">
+                <div class="col-6">
+                    <p>[[item.friendlyName]]</p>
+                </div>
+                <div class="col-6">
+                    <p>[[item.value]]</p>
+                </div>
+            </div>
+        </template>
+    </template>
+
+    <script src="oc-form-creator.js"></script>
+</dom-module>

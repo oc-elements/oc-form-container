@@ -1,41 +1,62 @@
 /// <reference path="../polymer/types/polymer-element.d.ts" />
 /// <reference path="../polymer-decorators/polymer-decorators.d.ts" />
 /// <reference path="../iron-collapse/iron-collapse.d.ts" />
-import customElement = Polymer.decorators.customElement;
-import property = Polymer.decorators.property;
+namespace OcForms {
+	import customElement = Polymer.decorators.customElement;
+	import property = Polymer.decorators.property;
+	import observe = Polymer.decorators.observe;
 
-@customElement('oc-form-container')
-class OcFormContainer extends Polymer.Element {
+	@customElement('oc-form-container')
+	class OcFormContainer extends Polymer.Element {
 
-    @property({type: String})
-    private header: string;
-    @property({type: Boolean})
-    private isCollapsible: boolean = false;
+		@property({type: String})
+		private header: string;
+		@property({type: Boolean})
+		private isCollapsible: boolean = false;
+		@property({type: Object})
+		private data: Object;
+		@property({type: Object})
+		private schema: Object;
 
-    @Polymer.decorators.query('#ironCollapse')
-    ironCollapse: IronCollapseElement;
+		@Polymer.decorators.query('#formCreator')
+		ocFormCreator: OcFormCreator;
 
-    private readonly addIcon = "add";
-    private readonly removeIcon = "remove";
-    // For now we make the default icon the remove icon, because its opened by default this will change
-    private collapseIcon: string = "remove";
+		@Polymer.decorators.query('#ironCollapse')
+		ironCollapse: IronCollapseElement;
 
-    constructor() {
-        super();
-    }
+		private readonly addIcon = "add";
+		private readonly removeIcon = "remove";
+		// For now we make the default icon the remove icon, because its opened by default this will change
+		private collapseIcon: string = "remove";
 
-    private onHeaderClick() {
-        if (!this.isCollapsible) return;
+		constructor() {
+			super();
+		}
 
-        this.toggleCollapse();
-    }
+		@observe('schema', 'data')
+		private onDataLoaded() {
+			if (this.schema && this.data) {
+				const dataLayer = new OcDataLayer.OcDataCollection(this.schema, this.data);
+				dataLayer.init();
 
-    private toggleCollapse() {
-        this.ironCollapse.opened = !this.ironCollapse.opened;
+				this.ocFormCreator.records = dataLayer.records;
+			}
+		}
 
-        if (this.ironCollapse.opened)
-            this.collapseIcon = this.removeIcon;
-        else
-            this.collapseIcon = this.addIcon
-    }
+
+		private onHeaderClick() {
+			if (!this.isCollapsible) return;
+
+			this.toggleCollapse();
+		}
+
+		private toggleCollapse() {
+			this.ironCollapse.opened = !this.ironCollapse.opened;
+
+			if (this.ironCollapse.opened)
+				this.collapseIcon = this.removeIcon;
+			else
+				this.collapseIcon = this.addIcon
+		}
+	}
 }
