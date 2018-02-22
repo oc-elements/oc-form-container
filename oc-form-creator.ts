@@ -10,5 +10,7 @@ namespace OcForms {
         public records: OcRecord[];
         @property({type: Boolean})
         private isCollapsible: boolean = false;
-    }
+		@property({type: Boolean})
+		private isEditMode: boolean = false;
+	}
 }

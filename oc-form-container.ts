@@ -5,6 +5,8 @@ namespace OcForms {
 	import customElement = Polymer.decorators.customElement;
 	import property = Polymer.decorators.property;
 	import observe = Polymer.decorators.observe;
+	import Event = OcEvent.Event;
+	import query = Polymer.decorators.query;
 
 	@customElement('oc-form-container')
 	class OcFormContainer extends Polymer.Element {
@@ -18,16 +20,19 @@ namespace OcForms {
 		@property({type: Object})
 		private schema: Object;
 
-		@Polymer.decorators.query('#formCreator')
+		@query('#formCreator')
 		ocFormCreator: OcFormCreator;
 
-		@Polymer.decorators.query('#ironCollapse')
+		@query('#ironCollapse')
 		ironCollapse: IronCollapseElement;
 
 		private readonly addIcon = "add";
 		private readonly removeIcon = "remove";
 		// For now we make the default icon the remove icon, because its opened by default this will change
 		private collapseIcon: string = "remove";
+
+		// This will be used at a later stage when we include the buttons
+		public onSaveEvent: Event = new Event();
 
 		constructor() {
 			super();
@@ -42,7 +47,6 @@ namespace OcForms {
 				this.ocFormCreator.records = dataLayer.records;
 			}
 		}
-
 
 		private onHeaderClick() {
 			if (!this.isCollapsible) return;
