@@ -30,6 +30,9 @@
                 font-size: 1.13em !important;
                 margin: 10px 0 !important;
             }
+            .float-right {
+                float: right;
+            }
         </style>
 
         <div class="container-fluid">
@@ -38,7 +41,7 @@
                     <h3>[[header]]</h3>
                 </div>
                 <div class="col-2" hidden="[[!isCollapsible]]">
-                    <iron-icon icon="[[collapseIcon]]"></iron-icon>
+                    <iron-icon icon="[[collapseIcon]]" class="float-right"></iron-icon>
                 </div>
                 <slot name="header-content"></slot>
             </div>
