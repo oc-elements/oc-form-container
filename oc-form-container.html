@@ -4,6 +4,7 @@
 <link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../iron-collapse/iron-collapse.html">
 
+<link rel="import" href="../../src/oc-button-styles.html">
 <link rel="import" href="oc-form-creator.html">
 <link rel="import" href="oc-data-layer.html">
 <link rel="import" href="oc-event.html">
@@ -12,7 +13,7 @@
     <template>
         <!-- BOOTSTRAP 4 CSS-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <style>
+        <style include="oc-button-styles">
             :host {
                 display: block;
                 background-color: var(--app-secondary-color);
@@ -29,13 +30,6 @@
 
             .category-heading:hover {
                 cursor: pointer;
-            }
-
-            .collapse-icon {
-                border: 1px solid #5d6b79;
-                color: #d2d5d8;
-                background: #33404d;
-                border-radius: 50%;
             }
 
             h3 {
