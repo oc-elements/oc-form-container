@@ -28,8 +28,14 @@
             }
 
             .category-heading:hover {
-                box-shadow: 0 3px 5px rgba(0,0,0,0.3);
                 cursor: pointer;
+            }
+
+            .collapse-icon {
+                border: 1px solid #5d6b79;
+                color: #d2d5d8;
+                background: #33404d;
+                border-radius: 50%;
             }
 
             h3 {
@@ -49,7 +55,7 @@
                     <h3>[[header]]</h3>
                 </div>
                 <div class="col-2" hidden="[[!isCollapsible]]">
-                    <iron-icon icon="[[collapseIcon]]" class="float-right"></iron-icon>
+                    <iron-icon icon="[[collapseIcon]]" class="float-right collapse-icon"></iron-icon>
                 </div>
                 <slot name="header-content"></slot>
             </div>
