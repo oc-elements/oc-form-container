@@ -6,16 +6,23 @@
 	<template>
 		<!-- BOOTSTRAP 4 CSS-->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-		<style>
+		<style is="custom-style">
+			.strong {
+				font-weight:bold;
+			}
 
+			.row-padding {
+				margin-top:5px;
+				margin-bottom:10px;
+			}
 		</style>
 		<template is="dom-repeat" items="[[records]]">
-			<div class="row">
-				<div class="col-4">
-					<p>[[item.friendlyName]]</p>
+			<div class="row row-padding">
+				<div class="col-12">
+					<span>[[item.friendlyName]]</span>
 				</div>
-				<div class="col-8">
-					<p>[[item.value]]</p>
+				<div class="col-12">
+					<span class="strong">[[item.value]]</span>
 				</div>
 			</div>
 		</template>
@@ -24,8 +31,8 @@
 				<div class="row">
 					<div class="col-12">
 						<paper-input
-							label="[[item.friendlyName]]"
-							value="{{item.value}}">
+								label="[[item.friendlyName]]"
+								value="{{item.value}}">
 						</paper-input>
 					</div>
 				</div>
