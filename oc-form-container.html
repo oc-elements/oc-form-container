@@ -42,12 +42,17 @@
             .float-right {
                 float: right;
             }
+            @media print {
+                .print-color {
+                    color:#000;
+                }
+            }
         </style>
 
         <div class="container-fluid">
             <div class="row category-heading align-items-center" on-click="onHeaderClick">
                 <div class="col">
-                    <h3>[[header]]</h3>
+                    <h3 class="print-color">[[header]]</h3>
                 </div>
                 <div class="col-2" hidden="[[!isCollapsible]]">
                     <iron-icon icon="[[collapseIcon]]" class="float-right collapse-icon"></iron-icon>
