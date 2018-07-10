@@ -18,7 +18,7 @@
                 display: block;
                 background-color: var(--app-secondary-color);
                 color: white;
-                margin-bottom:42px;
+                margin-bottom: 42px;
             }
 
             .category-heading {
@@ -41,11 +41,13 @@
             .float-right {
                 float: right;
             }
+
             @media print {
                 .print-color {
-                    color:#000;
+                    color: #000;
                 }
             }
+
             .altheader {
                 text-transform: none !important;
             }
@@ -66,7 +68,9 @@
             </div>
             <iron-collapse id="ironCollapse" opened>
                 <!-- Either/Or -->
-                <slot></slot>
+                <div id="form">
+                    <slot></slot>
+                </div>
                 <slot name="content"></slot>
                 <oc-form-creator id="formCreator"></oc-form-creator>
                 <!-- TODO: This slot is for the button container -->
