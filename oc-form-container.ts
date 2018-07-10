@@ -1,6 +1,7 @@
 /// <reference path="../polymer/types/polymer-element.d.ts" />
 /// <reference path="../polymer-decorators/polymer-decorators.d.ts" />
 /// <reference path="../iron-collapse/iron-collapse.d.ts" />
+/// <reference path="../iron-form/iron-form.d.ts" />
 namespace OcForms {
 	import customElement = Polymer.decorators.customElement;
 	import property = Polymer.decorators.property;
@@ -20,6 +21,9 @@ namespace OcForms {
 		@property({type: Object})
 		private schema: Object;
 
+		@query('#form')
+		form: any;
+
 		@query('#formCreator')
 		ocFormCreator: OcFormCreator;
 
@@ -38,6 +42,12 @@ namespace OcForms {
 			super();
 		}
 
+		ready() {
+			super.ready();
+
+			this.form.addEventListener('keydown', (event) => this.onEnter(event));
+		}
+
 		@observe('schema', 'data')
 		private onDataLoaded() {
 			if (this.schema && this.data) {
@@ -45,6 +55,18 @@ namespace OcForms {
 				dataLayer.init();
 
 				this.ocFormCreator.records = dataLayer.records;
+			}
+		}
+
+		private onEnter(event) {
+			if (event.keyCode === 13) {
+				const currentElementIndex = +event.target.getAttribute("tabindex"); // Get current selected element index
+				const nextIndexElement = event.currentTarget.querySelector("slot") // Get form content
+					.assignedNodes()[1] // 1 Will fetch the form content item
+					.querySelectorAll(`[tabindex="${currentElementIndex + 1}"]`)[0]; // Search for element with tab index
+				
+				if (nextIndexElement)
+					nextIndexElement.focus(); // We should maybe add a try and catch in case component does not have focus
 			}
 		}
 
