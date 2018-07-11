@@ -1,7 +1,6 @@
 /// <reference path="../polymer/types/polymer-element.d.ts" />
 /// <reference path="../polymer-decorators/polymer-decorators.d.ts" />
 /// <reference path="../iron-collapse/iron-collapse.d.ts" />
-/// <reference path="../iron-form/iron-form.d.ts" />
 namespace OcForms {
 	import customElement = Polymer.decorators.customElement;
 	import property = Polymer.decorators.property;
@@ -9,26 +8,22 @@ namespace OcForms {
 	import Event = OcEvent.Event;
 	import query = Polymer.decorators.query;
 
-	@customElement('oc-form-container')
+	@customElement("oc-form-container")
 	class OcFormContainer extends Polymer.Element {
-
-		@property({type: String})
+		@property({ type: String })
 		private header: string;
-		@property({type: Boolean})
+		@property({ type: Boolean })
 		private isCollapsible: boolean = false;
-		@property({type: Object})
+		@property({ type: Object })
 		private data: Object;
-		@property({type: Object})
+		@property({ type: Object })
 		private schema: Object;
 
-		@query('#form')
-		form: any;
+		@query("#form") form: any;
 
-		@query('#formCreator')
-		ocFormCreator: OcFormCreator;
+		@query("#formCreator") ocFormCreator: OcFormCreator;
 
-		@query('#ironCollapse')
-		ironCollapse: IronCollapseElement;
+		@query("#ironCollapse") ironCollapse: IronCollapseElement;
 
 		private readonly addIcon = "add";
 		private readonly removeIcon = "remove";
@@ -45,13 +40,16 @@ namespace OcForms {
 		ready() {
 			super.ready();
 
-			this.form.addEventListener('keydown', (event) => this.onEnter(event));
+			this.form.addEventListener("keydown", event => this.onEnter(event));
 		}
 
-		@observe('schema', 'data')
+		@observe("schema", "data")
 		private onDataLoaded() {
 			if (this.schema && this.data) {
-				const dataLayer = new OcDataLayer.OcDataCollection(this.schema, this.data);
+				const dataLayer = new OcDataLayer.OcDataCollection(
+					this.schema,
+					this.data
+				);
 				dataLayer.init();
 
 				this.ocFormCreator.records = dataLayer.records;
@@ -60,13 +58,18 @@ namespace OcForms {
 
 		private onEnter(event) {
 			if (event.keyCode === 13) {
-				const currentElementIndex = +event.target.getAttribute("tabindex"); // Get current selected element index
-				const nextIndexElement = event.currentTarget.querySelector("slot") // Get form content
-					.assignedNodes()[1] // 1 Will fetch the form content item
-					.querySelectorAll(`[tabindex="${currentElementIndex + 1}"]`)[0]; // Search for element with tab index
-				
-				if (nextIndexElement)
-					nextIndexElement.focus(); // We should maybe add a try and catch in case component does not have focus
+				const currentElementIndex = +event.target.getAttribute(
+					"tabindex"
+				); // Get current selected element index
+				const nextIndexElement = event.currentTarget
+					.querySelector("slot") // Get form content
+					.assignedNodes()[0]
+					.parentNode // 1 Will fetch the form content item
+					.querySelectorAll(
+						`[tabindex="${currentElementIndex + 1}"]`
+					)[0]; // Search for element with tab index
+
+				if (nextIndexElement) nextIndexElement.focus(); // We should maybe add a try and catch in case component does not have focus
 			}
 		}
 
@@ -79,10 +82,8 @@ namespace OcForms {
 		private toggleCollapse() {
 			this.ironCollapse.opened = !this.ironCollapse.opened;
 
-			if (this.ironCollapse.opened)
-				this.collapseIcon = this.removeIcon;
-			else
-				this.collapseIcon = this.addIcon
+			if (this.ironCollapse.opened) this.collapseIcon = this.removeIcon;
+			else this.collapseIcon = this.addIcon;
 		}
 	}
 }
