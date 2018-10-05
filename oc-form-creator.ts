@@ -12,5 +12,14 @@ namespace OcForms {
         private isCollapsible: boolean = false;
 		@property({type: Boolean})
 		private isEditMode: boolean = false;
+
+		private _isCustom(type: string) {
+			return type === "custom";
+		}
+
+		// Jeremy: This is a hack don't reuse this
+		private _buildCustomField(data: {types: any[], id: any}) {
+			return `${data.types[0].name} ${data.id}`
+		}
 	}
 }

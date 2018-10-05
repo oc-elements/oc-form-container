@@ -20,12 +20,19 @@
 		</style>
 		<template is="dom-repeat" items="[[records]]">
 			<div class="row row-padding">
-				<div class="col-12">
-					<span>[[item.friendlyName]]</span>
-				</div>
-				<div class="col-12">
-					<span class="strong">[[item.value]]</span>
-				</div>
+				<template is="dom-if" if="[[!_isCustom(item.type)]]">
+					<div class="col-12">
+						<span>[[item.friendlyName]]</span>
+					</div>
+					<div class="col-12">
+						<span class="strong">[[item.value]]</span>
+					</div>
+				</template>
+				<template is="dom-if" if="[[_isCustom(item.type)]]">
+					<div class="col-12">
+						<span>[[_buildCustomField(item.data)]]</span>
+					</div>
+				</template>
 			</div>
 		</template>
 		<template is="dom-if" if="[[isEditMode]]">
